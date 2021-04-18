@@ -1,0 +1,57 @@
+"0","knitr::opts_chunk$set(echo = TRUE)"
+"0","library('ggplot2')"
+"2","пакет Сggplot2Т был собран под R версии 3.6.3"
+"0","library('rjson')"
+"0","library('dplyr')"
+"2","пакет СdplyrТ был собран под R версии 3.6.3"
+"2","
+ѕрисоедин€ю пакет: СdplyrТ
+
+"
+"2","—ледующие объекты скрыты от Сpackage:statsТ:
+
+    filter, lag
+
+"
+"2","—ледующие объекты скрыты от Сpackage:baseТ:
+
+    intersect, setdiff, setequal, union
+
+"
+"0","library('lattice')"
+"2","пакет СlatticeТ был собран под R версии 3.6.3"
+"0","library('stringr')"
+"2","пакет СstringrТ был собран под R версии 3.6.3"
+"0","library('gridExtra')"
+"2","пакет СgridExtraТ был собран под R версии 3.6.3"
+"2","
+ѕрисоедин€ю пакет: СgridExtraТ
+
+"
+"2","—ледующий объект скрыт от Сpackage:dplyrТ:
+
+    combine
+
+"
+"0","library('data.table')"
+"2","пакет Сdata.tableТ был собран под R версии 3.6.3"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","data.table 1.14.0 using 6 threads (see ?getDTthreads).  Latest news: r-datatable.com
+"
+"2","
+ѕрисоедин€ю пакет: Сdata.tableТ
+
+"
+"2","—ледующий объект скрыт С.GlobalEnvТ:
+
+    .N
+
+"
+"2","—ледующие объекты скрыты от Сpackage:dplyrТ:
+
+    between, first, last
+
+"
