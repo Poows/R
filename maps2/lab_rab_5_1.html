@@ -1,0 +1,2557 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Акименков Александр" />
+
+
+<title>Лабораторная работа 5</title>
+
+<script src="lab_rab_5_1_files/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="lab_rab_5_1_files/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="lab_rab_5_1_files/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="lab_rab_5_1_files/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="lab_rab_5_1_files/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="lab_rab_5_1_files/navigation-1.1/tabsets.js"></script>
+<link href="lab_rab_5_1_files/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="lab_rab_5_1_files/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Лабораторная работа 5</h1>
+<h4 class="author">Акименков Александр</h4>
+<h4 class="date">18.04.2021</h4>
+
+</div>
+
+
+<div id="section" class="section level1">
+<h1>Вариант - 2</h1>
+<p>Задача:</p>
+<p>Создать .Rmd скрипт, который генерирует html-отчёт с двумя картами:</p>
+<ol style="list-style-type: decimal">
+<li><p>Картограмма с таблицей стран мира по показателю из базы Всемирного банка (интерактивная картограмма из примера).</p></li>
+<li><p>Карта с маркерами или с радиусами, построенная по набору данных с Портала открытых данных РФ.</p></li>
+</ol>
+<p>Данные для карт можно загружать из своего репозитория на github.com. Код загрузки данных с помощью API предоставлять необязательно, но если выкладываете его на github.com, не забудьте заново сгенерировать ключи API, чтобы никто не мог воспользоваться вашим логином.</p>
+<p>Распределение баллов за упражнение:</p>
+<ul>
+<li>есть первая карта: 4 балла;</li>
+<li>есть вторая карта (метки на карте содержат всплывающие подсказки с информацией об объектах): 4 балла;</li>
+<li>html-страница с картами содержит дату создания документа и размещена на RPubs или github.io: 3 балла.</li>
+</ul>
+<p>Чтобы разместить на githubотображаемую веб-страницу, необходимо создать репозиторий имя_пользователя.gothub.io(где имя_пользователя –ваш логин на github) и разместить в нём html-документ для отображения. Страница будет доступна по адресу <a href="https://имя_пользователя.github.io" class="uri">https://имя_пользователя.github.io</a>. Подробнее: <a href="https://pages.github.com/" class="uri">https://pages.github.com/</a>.</p>
+<p>Вариант:</p>
+<p>WDI: любой показатель из раздела “Aid Effectiveness” (Эффективность госпомощи). Портал открытых данных: Портал открытых данных: Объекты культурного наследия на территории Костромской области (id: 4401168294-oknkosobl), взять только расположенные в посёлке Вохма.</p>
+<p>Заболеваемость туберкулезом (на 100 000 человек)</p>
+<pre class="r"><code>library(&#39;WDI&#39;)
+library(&#39;data.table&#39;)
+library(&#39;leaflet&#39;)
+suppressPackageStartupMessages(library(&#39;googleVis&#39;))
+
+# Индикатор показателя
+indicator.code &lt;- &#39;SH.TBS.INCD&#39;
+
+data &lt;- read.csv(&#39;./data/dannye_WDI.csv&#39;, header = T, sep = &#39;,&#39;)
+data &lt;- data.table(data)
+
+# Коды стран iso2
+fileURL &lt;- &#39;https://pkgstore.datahub.io/core/country-list/data_csv/data/d7c9d7cfb42cb69f4422dec222dbbaa8/data_csv.csv&#39;
+all.iso2.country.codes &lt;- read.csv(fileURL, 
+                                   stringsAsFactors = FALSE, na.strings = &#39;.&#39;)
+
+# Убираем макрорегионы
+data &lt;- na.omit(data[iso2c %in% all.iso2.country.codes$Code, ])
+
+# Объект таблица исходных данных
+g.tbl &lt;- gvisTable(data = data[, -&#39;year&#39;], 
+                   options = list(width = 300, height = 400))
+
+# Объект интерактивная карта
+g.chart &lt;- gvisGeoChart(data = data, locationvar = &#39;iso2c&#39;,
+                        hovervar = &#39;country&#39;, colorvar = indicator.code,
+                        options = list(width = 500, 
+                                       height = 400, dataMode = &#39;regions&#39;))
+
+# Разместить таблицу и карту на одной панели
+gvisMerge(g.tbl, g.chart, horizontal = TRUE,
+          tableOptions = &#39;bgcolor=\&quot;#CCCCCC\&quot; cellspacing=10&#39;)</code></pre>
+&lt;!DOCTYPE html PUBLIC “-//W3C//DTD XHTML 1.0 Strict//EN” “<a href="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" class="uri">https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd</a>”&gt;
+<html xmlns="https://www.w3.org/1999/xhtml">
+<head>
+<title>
+MergedID2628204a2900
+</title>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<style type="text/css">
+body {
+  color: #444444;
+  font-family: Arial,Helvetica,sans-serif;
+  font-size: 75%;
+  }
+  a {
+  color: #4D87C7;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+<!-- Table generated in R 3.6.1 by googleVis 0.6.10 package -->
+<!-- Tue Apr 20 01:16:49 2021 -->
+<!-- jsHeader -->
+<script type="text/javascript">
+ 
+// jsData 
+function gvisDataTableID26284d274c27 () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+"AF",
+"Afghanistan",
+189
+],
+[
+"AL",
+"Albania",
+16
+],
+[
+"DZ",
+"Algeria",
+61
+],
+[
+"AS",
+"American Samoa",
+2.1
+],
+[
+"AD",
+"Andorra",
+7.5
+],
+[
+"AO",
+"Angola",
+351
+],
+[
+"AG",
+"Antigua and Barbuda",
+0
+],
+[
+"AR",
+"Argentina",
+29
+],
+[
+"AM",
+"Armenia",
+26
+],
+[
+"AW",
+"Aruba",
+2.2
+],
+[
+"AU",
+"Australia",
+6.9
+],
+[
+"AT",
+"Austria",
+6.2
+],
+[
+"AZ",
+"Azerbaijan",
+60
+],
+[
+"BS",
+"Bahamas, The",
+15
+],
+[
+"BH",
+"Bahrain",
+12
+],
+[
+"BD",
+"Bangladesh",
+221
+],
+[
+"BB",
+"Barbados",
+0
+],
+[
+"BY",
+"Belarus",
+29
+],
+[
+"BE",
+"Belgium",
+8.9
+],
+[
+"BZ",
+"Belize",
+27
+],
+[
+"BJ",
+"Benin",
+55
+],
+[
+"BM",
+"Bermuda",
+3.7
+],
+[
+"BT",
+"Bhutan",
+165
+],
+[
+"BO",
+"Bolivia",
+106
+],
+[
+"BA",
+"Bosnia and Herzegovina",
+27
+],
+[
+"BW",
+"Botswana",
+253
+],
+[
+"BR",
+"Brazil",
+46
+],
+[
+"VG",
+"British Virgin Islands",
+3.9
+],
+[
+"BN",
+"Brunei Darussalam",
+64
+],
+[
+"BG",
+"Bulgaria",
+21
+],
+[
+"BF",
+"Burkina Faso",
+47
+],
+[
+"BI",
+"Burundi",
+107
+],
+[
+"CV",
+"Cabo Verde",
+46
+],
+[
+"KH",
+"Cambodia",
+287
+],
+[
+"CM",
+"Cameroon",
+179
+],
+[
+"CA",
+"Canada",
+5.5
+],
+[
+"KY",
+"Cayman Islands",
+6
+],
+[
+"CF",
+"Central African Republic",
+540
+],
+[
+"TD",
+"Chad",
+142
+],
+[
+"CL",
+"Chile",
+18
+],
+[
+"CN",
+"China",
+58
+],
+[
+"CO",
+"Colombia",
+35
+],
+[
+"KM",
+"Comoros",
+35
+],
+[
+"CD",
+"Congo, Dem. Rep.",
+320
+],
+[
+"CG",
+"Congo, Rep.",
+373
+],
+[
+"CR",
+"Costa Rica",
+10
+],
+[
+"CI",
+"Cote d'Ivoire",
+137
+],
+[
+"HR",
+"Croatia",
+8
+],
+[
+"CU",
+"Cuba",
+6.5
+],
+[
+"CW",
+"Curacao",
+7.2
+],
+[
+"CY",
+"Cyprus",
+5.3
+],
+[
+"CZ",
+"Czech Republic",
+4.9
+],
+[
+"DK",
+"Denmark",
+5
+],
+[
+"DJ",
+"Djibouti",
+234
+],
+[
+"DM",
+"Dominica",
+16
+],
+[
+"DO",
+"Dominican Republic",
+42
+],
+[
+"EC",
+"Ecuador",
+46
+],
+[
+"EG",
+"Egypt, Arab Rep.",
+12
+],
+[
+"SV",
+"El Salvador",
+58
+],
+[
+"GQ",
+"Equatorial Guinea",
+181
+],
+[
+"ER",
+"Eritrea",
+86
+],
+[
+"EE",
+"Estonia",
+13
+],
+[
+"SZ",
+"Eswatini",
+363
+],
+[
+"ET",
+"Ethiopia",
+140
+],
+[
+"FJ",
+"Fiji",
+66
+],
+[
+"FI",
+"Finland",
+4.7
+],
+[
+"FR",
+"France",
+8.7
+],
+[
+"PF",
+"French Polynesia",
+20
+],
+[
+"GA",
+"Gabon",
+521
+],
+[
+"GM",
+"Gambia, The",
+158
+],
+[
+"GE",
+"Georgia",
+74
+],
+[
+"DE",
+"Germany",
+5.8
+],
+[
+"GH",
+"Ghana",
+144
+],
+[
+"GR",
+"Greece",
+4.3
+],
+[
+"GL",
+"Greenland",
+128
+],
+[
+"GD",
+"Grenada",
+3.1
+],
+[
+"GU",
+"Guam",
+54
+],
+[
+"GT",
+"Guatemala",
+26
+],
+[
+"GN",
+"Guinea",
+176
+],
+[
+"GW",
+"Guinea-Bissau",
+361
+],
+[
+"GY",
+"Guyana",
+79
+],
+[
+"HT",
+"Haiti",
+170
+],
+[
+"HN",
+"Honduras",
+31
+],
+[
+"HK",
+"Hong Kong SAR, China",
+63
+],
+[
+"HU",
+"Hungary",
+6.3
+],
+[
+"IS",
+"Iceland",
+4.4
+],
+[
+"IN",
+"India",
+193
+],
+[
+"ID",
+"Indonesia",
+312
+],
+[
+"IR",
+"Iran, Islamic Rep.",
+13
+],
+[
+"IQ",
+"Iraq",
+41
+],
+[
+"IE",
+"Ireland",
+5.8
+],
+[
+"IL",
+"Israel",
+2.9
+],
+[
+"IT",
+"Italy",
+7.1
+],
+[
+"JM",
+"Jamaica",
+3.2
+],
+[
+"JP",
+"Japan",
+13
+],
+[
+"JO",
+"Jordan",
+5.5
+],
+[
+"KZ",
+"Kazakhstan",
+68
+],
+[
+"KE",
+"Kenya",
+267
+],
+[
+"KI",
+"Kiribati",
+436
+],
+[
+"KP",
+"Korea, Dem. PeopleвЂ™s Rep.",
+513
+],
+[
+"KR",
+"Korea, Rep.",
+59
+],
+[
+"KW",
+"Kuwait",
+22
+],
+[
+"KG",
+"Kyrgyz Republic",
+110
+],
+[
+"LA",
+"Lao PDR",
+155
+],
+[
+"LV",
+"Latvia",
+26
+],
+[
+"LB",
+"Lebanon",
+13
+],
+[
+"LS",
+"Lesotho",
+654
+],
+[
+"LR",
+"Liberia",
+308
+],
+[
+"LY",
+"Libya",
+59
+],
+[
+"LT",
+"Lithuania",
+42
+],
+[
+"LU",
+"Luxembourg",
+9
+],
+[
+"MO",
+"Macao SAR, China",
+65
+],
+[
+"MG",
+"Madagascar",
+233
+],
+[
+"MW",
+"Malawi",
+146
+],
+[
+"MY",
+"Malaysia",
+92
+],
+[
+"MV",
+"Maldives",
+36
+],
+[
+"ML",
+"Mali",
+52
+],
+[
+"MT",
+"Malta",
+14
+],
+[
+"MH",
+"Marshall Islands",
+483
+],
+[
+"MR",
+"Mauritania",
+89
+],
+[
+"MU",
+"Mauritius",
+12
+],
+[
+"MX",
+"Mexico",
+23
+],
+[
+"FM",
+"Micronesia, Fed. Sts.",
+100
+],
+[
+"MD",
+"Moldova",
+80
+],
+[
+"MC",
+"Monaco",
+0
+],
+[
+"MN",
+"Mongolia",
+428
+],
+[
+"ME",
+"Montenegro",
+15
+],
+[
+"MA",
+"Morocco",
+97
+],
+[
+"MZ",
+"Mozambique",
+361
+],
+[
+"MM",
+"Myanmar",
+322
+],
+[
+"NR",
+"Nauru",
+182
+],
+[
+"NP",
+"Nepal",
+238
+],
+[
+"NL",
+"Netherlands",
+5
+],
+[
+"NC",
+"New Caledonia",
+9.4
+],
+[
+"NZ",
+"New Zealand",
+7.5
+],
+[
+"NI",
+"Nicaragua",
+43
+],
+[
+"NE",
+"Niger",
+84
+],
+[
+"NG",
+"Nigeria",
+219
+],
+[
+"MK",
+"North Macedonia",
+12
+],
+[
+"MP",
+"Northern Mariana Islands",
+103
+],
+[
+"NO",
+"Norway",
+3.3
+],
+[
+"OM",
+"Oman",
+8.5
+],
+[
+"PK",
+"Pakistan",
+263
+],
+[
+"PW",
+"Palau",
+38
+],
+[
+"PA",
+"Panama",
+37
+],
+[
+"PG",
+"Papua New Guinea",
+432
+],
+[
+"PY",
+"Paraguay",
+46
+],
+[
+"PE",
+"Peru",
+119
+],
+[
+"PH",
+"Philippines",
+554
+],
+[
+"PL",
+"Poland",
+15
+],
+[
+"PT",
+"Portugal",
+19
+],
+[
+"PR",
+"Puerto Rico",
+1.4
+],
+[
+"QA",
+"Qatar",
+35
+],
+[
+"RO",
+"Romania",
+66
+],
+[
+"RU",
+"Russian Federation",
+50
+],
+[
+"RW",
+"Rwanda",
+57
+],
+[
+"WS",
+"Samoa",
+11
+],
+[
+"SM",
+"San Marino",
+0
+],
+[
+"ST",
+"Sao Tome and Principe",
+114
+],
+[
+"SA",
+"Saudi Arabia",
+9.9
+],
+[
+"SN",
+"Senegal",
+117
+],
+[
+"RS",
+"Serbia",
+14
+],
+[
+"SC",
+"Seychelles",
+16
+],
+[
+"SL",
+"Sierra Leone",
+295
+],
+[
+"SG",
+"Singapore",
+41
+],
+[
+"SX",
+"Sint Maarten (Dutch part)",
+14
+],
+[
+"SK",
+"Slovak Republic",
+4.5
+],
+[
+"SI",
+"Slovenia",
+5.4
+],
+[
+"SB",
+"Solomon Islands",
+66
+],
+[
+"SO",
+"Somalia",
+258
+],
+[
+"ZA",
+"South Africa",
+615
+],
+[
+"SS",
+"South Sudan",
+227
+],
+[
+"ES",
+"Spain",
+9.3
+],
+[
+"LK",
+"Sri Lanka",
+64
+],
+[
+"KN",
+"St. Kitts and Nevis",
+1.5
+],
+[
+"LC",
+"St. Lucia",
+3.8
+],
+[
+"VC",
+"St. Vincent and the Grenadines",
+4.2
+],
+[
+"SD",
+"Sudan",
+67
+],
+[
+"SR",
+"Suriname",
+29
+],
+[
+"SE",
+"Sweden",
+5.5
+],
+[
+"CH",
+"Switzerland",
+5.4
+],
+[
+"SY",
+"Syrian Arab Republic",
+19
+],
+[
+"TJ",
+"Tajikistan",
+83
+],
+[
+"TZ",
+"Tanzania",
+237
+],
+[
+"TH",
+"Thailand",
+150
+],
+[
+"TL",
+"Timor-Leste",
+498
+],
+[
+"TG",
+"Togo",
+37
+],
+[
+"TO",
+"Tonga",
+11
+],
+[
+"TT",
+"Trinidad and Tobago",
+18
+],
+[
+"TN",
+"Tunisia",
+35
+],
+[
+"TR",
+"Turkey",
+16
+],
+[
+"TM",
+"Turkmenistan",
+45
+],
+[
+"TC",
+"Turks and Caicos Islands",
+12
+],
+[
+"TV",
+"Tuvalu",
+296
+],
+[
+"UG",
+"Uganda",
+200
+],
+[
+"UA",
+"Ukraine",
+77
+],
+[
+"AE",
+"United Arab Emirates",
+1
+],
+[
+"GB",
+"United Kingdom",
+8
+],
+[
+"US",
+"United States",
+3
+],
+[
+"UY",
+"Uruguay",
+35
+],
+[
+"UZ",
+"Uzbekistan",
+67
+],
+[
+"VU",
+"Vanuatu",
+41
+],
+[
+"VE",
+"Venezuela, RB",
+45
+],
+[
+"VN",
+"Vietnam",
+176
+],
+[
+"PS",
+"West Bank and Gaza",
+0.53
+],
+[
+"YE",
+"Yemen, Rep.",
+48
+],
+[
+"ZM",
+"Zambia",
+333
+],
+[
+"ZW",
+"Zimbabwe",
+199
+] 
+];
+data.addColumn('string','iso2c');
+data.addColumn('string','country');
+data.addColumn('number','SH.TBS.INCD');
+data.addRows(datajson);
+return(data);
+}
+
+
+// jsData 
+function gvisDataGeoChartID2628717e249f () {
+var data = new google.visualization.DataTable();
+var datajson =
+[
+ [
+"AF",
+"Afghanistan",
+189
+],
+[
+"AL",
+"Albania",
+16
+],
+[
+"DZ",
+"Algeria",
+61
+],
+[
+"AS",
+"American Samoa",
+2.1
+],
+[
+"AD",
+"Andorra",
+7.5
+],
+[
+"AO",
+"Angola",
+351
+],
+[
+"AG",
+"Antigua and Barbuda",
+0
+],
+[
+"AR",
+"Argentina",
+29
+],
+[
+"AM",
+"Armenia",
+26
+],
+[
+"AW",
+"Aruba",
+2.2
+],
+[
+"AU",
+"Australia",
+6.9
+],
+[
+"AT",
+"Austria",
+6.2
+],
+[
+"AZ",
+"Azerbaijan",
+60
+],
+[
+"BS",
+"Bahamas, The",
+15
+],
+[
+"BH",
+"Bahrain",
+12
+],
+[
+"BD",
+"Bangladesh",
+221
+],
+[
+"BB",
+"Barbados",
+0
+],
+[
+"BY",
+"Belarus",
+29
+],
+[
+"BE",
+"Belgium",
+8.9
+],
+[
+"BZ",
+"Belize",
+27
+],
+[
+"BJ",
+"Benin",
+55
+],
+[
+"BM",
+"Bermuda",
+3.7
+],
+[
+"BT",
+"Bhutan",
+165
+],
+[
+"BO",
+"Bolivia",
+106
+],
+[
+"BA",
+"Bosnia and Herzegovina",
+27
+],
+[
+"BW",
+"Botswana",
+253
+],
+[
+"BR",
+"Brazil",
+46
+],
+[
+"VG",
+"British Virgin Islands",
+3.9
+],
+[
+"BN",
+"Brunei Darussalam",
+64
+],
+[
+"BG",
+"Bulgaria",
+21
+],
+[
+"BF",
+"Burkina Faso",
+47
+],
+[
+"BI",
+"Burundi",
+107
+],
+[
+"CV",
+"Cabo Verde",
+46
+],
+[
+"KH",
+"Cambodia",
+287
+],
+[
+"CM",
+"Cameroon",
+179
+],
+[
+"CA",
+"Canada",
+5.5
+],
+[
+"KY",
+"Cayman Islands",
+6
+],
+[
+"CF",
+"Central African Republic",
+540
+],
+[
+"TD",
+"Chad",
+142
+],
+[
+"CL",
+"Chile",
+18
+],
+[
+"CN",
+"China",
+58
+],
+[
+"CO",
+"Colombia",
+35
+],
+[
+"KM",
+"Comoros",
+35
+],
+[
+"CD",
+"Congo, Dem. Rep.",
+320
+],
+[
+"CG",
+"Congo, Rep.",
+373
+],
+[
+"CR",
+"Costa Rica",
+10
+],
+[
+"CI",
+"Cote d'Ivoire",
+137
+],
+[
+"HR",
+"Croatia",
+8
+],
+[
+"CU",
+"Cuba",
+6.5
+],
+[
+"CW",
+"Curacao",
+7.2
+],
+[
+"CY",
+"Cyprus",
+5.3
+],
+[
+"CZ",
+"Czech Republic",
+4.9
+],
+[
+"DK",
+"Denmark",
+5
+],
+[
+"DJ",
+"Djibouti",
+234
+],
+[
+"DM",
+"Dominica",
+16
+],
+[
+"DO",
+"Dominican Republic",
+42
+],
+[
+"EC",
+"Ecuador",
+46
+],
+[
+"EG",
+"Egypt, Arab Rep.",
+12
+],
+[
+"SV",
+"El Salvador",
+58
+],
+[
+"GQ",
+"Equatorial Guinea",
+181
+],
+[
+"ER",
+"Eritrea",
+86
+],
+[
+"EE",
+"Estonia",
+13
+],
+[
+"SZ",
+"Eswatini",
+363
+],
+[
+"ET",
+"Ethiopia",
+140
+],
+[
+"FJ",
+"Fiji",
+66
+],
+[
+"FI",
+"Finland",
+4.7
+],
+[
+"FR",
+"France",
+8.7
+],
+[
+"PF",
+"French Polynesia",
+20
+],
+[
+"GA",
+"Gabon",
+521
+],
+[
+"GM",
+"Gambia, The",
+158
+],
+[
+"GE",
+"Georgia",
+74
+],
+[
+"DE",
+"Germany",
+5.8
+],
+[
+"GH",
+"Ghana",
+144
+],
+[
+"GR",
+"Greece",
+4.3
+],
+[
+"GL",
+"Greenland",
+128
+],
+[
+"GD",
+"Grenada",
+3.1
+],
+[
+"GU",
+"Guam",
+54
+],
+[
+"GT",
+"Guatemala",
+26
+],
+[
+"GN",
+"Guinea",
+176
+],
+[
+"GW",
+"Guinea-Bissau",
+361
+],
+[
+"GY",
+"Guyana",
+79
+],
+[
+"HT",
+"Haiti",
+170
+],
+[
+"HN",
+"Honduras",
+31
+],
+[
+"HK",
+"Hong Kong SAR, China",
+63
+],
+[
+"HU",
+"Hungary",
+6.3
+],
+[
+"IS",
+"Iceland",
+4.4
+],
+[
+"IN",
+"India",
+193
+],
+[
+"ID",
+"Indonesia",
+312
+],
+[
+"IR",
+"Iran, Islamic Rep.",
+13
+],
+[
+"IQ",
+"Iraq",
+41
+],
+[
+"IE",
+"Ireland",
+5.8
+],
+[
+"IL",
+"Israel",
+2.9
+],
+[
+"IT",
+"Italy",
+7.1
+],
+[
+"JM",
+"Jamaica",
+3.2
+],
+[
+"JP",
+"Japan",
+13
+],
+[
+"JO",
+"Jordan",
+5.5
+],
+[
+"KZ",
+"Kazakhstan",
+68
+],
+[
+"KE",
+"Kenya",
+267
+],
+[
+"KI",
+"Kiribati",
+436
+],
+[
+"KP",
+"Korea, Dem. PeopleвЂ™s Rep.",
+513
+],
+[
+"KR",
+"Korea, Rep.",
+59
+],
+[
+"KW",
+"Kuwait",
+22
+],
+[
+"KG",
+"Kyrgyz Republic",
+110
+],
+[
+"LA",
+"Lao PDR",
+155
+],
+[
+"LV",
+"Latvia",
+26
+],
+[
+"LB",
+"Lebanon",
+13
+],
+[
+"LS",
+"Lesotho",
+654
+],
+[
+"LR",
+"Liberia",
+308
+],
+[
+"LY",
+"Libya",
+59
+],
+[
+"LT",
+"Lithuania",
+42
+],
+[
+"LU",
+"Luxembourg",
+9
+],
+[
+"MO",
+"Macao SAR, China",
+65
+],
+[
+"MG",
+"Madagascar",
+233
+],
+[
+"MW",
+"Malawi",
+146
+],
+[
+"MY",
+"Malaysia",
+92
+],
+[
+"MV",
+"Maldives",
+36
+],
+[
+"ML",
+"Mali",
+52
+],
+[
+"MT",
+"Malta",
+14
+],
+[
+"MH",
+"Marshall Islands",
+483
+],
+[
+"MR",
+"Mauritania",
+89
+],
+[
+"MU",
+"Mauritius",
+12
+],
+[
+"MX",
+"Mexico",
+23
+],
+[
+"FM",
+"Micronesia, Fed. Sts.",
+100
+],
+[
+"MD",
+"Moldova",
+80
+],
+[
+"MC",
+"Monaco",
+0
+],
+[
+"MN",
+"Mongolia",
+428
+],
+[
+"ME",
+"Montenegro",
+15
+],
+[
+"MA",
+"Morocco",
+97
+],
+[
+"MZ",
+"Mozambique",
+361
+],
+[
+"MM",
+"Myanmar",
+322
+],
+[
+"NR",
+"Nauru",
+182
+],
+[
+"NP",
+"Nepal",
+238
+],
+[
+"NL",
+"Netherlands",
+5
+],
+[
+"NC",
+"New Caledonia",
+9.4
+],
+[
+"NZ",
+"New Zealand",
+7.5
+],
+[
+"NI",
+"Nicaragua",
+43
+],
+[
+"NE",
+"Niger",
+84
+],
+[
+"NG",
+"Nigeria",
+219
+],
+[
+"MK",
+"North Macedonia",
+12
+],
+[
+"MP",
+"Northern Mariana Islands",
+103
+],
+[
+"NO",
+"Norway",
+3.3
+],
+[
+"OM",
+"Oman",
+8.5
+],
+[
+"PK",
+"Pakistan",
+263
+],
+[
+"PW",
+"Palau",
+38
+],
+[
+"PA",
+"Panama",
+37
+],
+[
+"PG",
+"Papua New Guinea",
+432
+],
+[
+"PY",
+"Paraguay",
+46
+],
+[
+"PE",
+"Peru",
+119
+],
+[
+"PH",
+"Philippines",
+554
+],
+[
+"PL",
+"Poland",
+15
+],
+[
+"PT",
+"Portugal",
+19
+],
+[
+"PR",
+"Puerto Rico",
+1.4
+],
+[
+"QA",
+"Qatar",
+35
+],
+[
+"RO",
+"Romania",
+66
+],
+[
+"RU",
+"Russian Federation",
+50
+],
+[
+"RW",
+"Rwanda",
+57
+],
+[
+"WS",
+"Samoa",
+11
+],
+[
+"SM",
+"San Marino",
+0
+],
+[
+"ST",
+"Sao Tome and Principe",
+114
+],
+[
+"SA",
+"Saudi Arabia",
+9.9
+],
+[
+"SN",
+"Senegal",
+117
+],
+[
+"RS",
+"Serbia",
+14
+],
+[
+"SC",
+"Seychelles",
+16
+],
+[
+"SL",
+"Sierra Leone",
+295
+],
+[
+"SG",
+"Singapore",
+41
+],
+[
+"SX",
+"Sint Maarten (Dutch part)",
+14
+],
+[
+"SK",
+"Slovak Republic",
+4.5
+],
+[
+"SI",
+"Slovenia",
+5.4
+],
+[
+"SB",
+"Solomon Islands",
+66
+],
+[
+"SO",
+"Somalia",
+258
+],
+[
+"ZA",
+"South Africa",
+615
+],
+[
+"SS",
+"South Sudan",
+227
+],
+[
+"ES",
+"Spain",
+9.3
+],
+[
+"LK",
+"Sri Lanka",
+64
+],
+[
+"KN",
+"St. Kitts and Nevis",
+1.5
+],
+[
+"LC",
+"St. Lucia",
+3.8
+],
+[
+"VC",
+"St. Vincent and the Grenadines",
+4.2
+],
+[
+"SD",
+"Sudan",
+67
+],
+[
+"SR",
+"Suriname",
+29
+],
+[
+"SE",
+"Sweden",
+5.5
+],
+[
+"CH",
+"Switzerland",
+5.4
+],
+[
+"SY",
+"Syrian Arab Republic",
+19
+],
+[
+"TJ",
+"Tajikistan",
+83
+],
+[
+"TZ",
+"Tanzania",
+237
+],
+[
+"TH",
+"Thailand",
+150
+],
+[
+"TL",
+"Timor-Leste",
+498
+],
+[
+"TG",
+"Togo",
+37
+],
+[
+"TO",
+"Tonga",
+11
+],
+[
+"TT",
+"Trinidad and Tobago",
+18
+],
+[
+"TN",
+"Tunisia",
+35
+],
+[
+"TR",
+"Turkey",
+16
+],
+[
+"TM",
+"Turkmenistan",
+45
+],
+[
+"TC",
+"Turks and Caicos Islands",
+12
+],
+[
+"TV",
+"Tuvalu",
+296
+],
+[
+"UG",
+"Uganda",
+200
+],
+[
+"UA",
+"Ukraine",
+77
+],
+[
+"AE",
+"United Arab Emirates",
+1
+],
+[
+"GB",
+"United Kingdom",
+8
+],
+[
+"US",
+"United States",
+3
+],
+[
+"UY",
+"Uruguay",
+35
+],
+[
+"UZ",
+"Uzbekistan",
+67
+],
+[
+"VU",
+"Vanuatu",
+41
+],
+[
+"VE",
+"Venezuela, RB",
+45
+],
+[
+"VN",
+"Vietnam",
+176
+],
+[
+"PS",
+"West Bank and Gaza",
+0.53
+],
+[
+"YE",
+"Yemen, Rep.",
+48
+],
+[
+"ZM",
+"Zambia",
+333
+],
+[
+"ZW",
+"Zimbabwe",
+199
+] 
+];
+data.addColumn('string','iso2c');
+data.addColumn('string','country');
+data.addColumn('number','SH.TBS.INCD');
+data.addRows(datajson);
+return(data);
+}
+ 
+// jsDrawChart
+function drawChartTableID26284d274c27() {
+var data = gvisDataTableID26284d274c27();
+var options = {};
+options["allowHtml"] = true;
+options["width"] = 300;
+options["height"] = 400;
+
+    var chart = new google.visualization.Table(
+    document.getElementById('TableID26284d274c27')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+
+
+// jsDrawChart
+function drawChartGeoChartID2628717e249f() {
+var data = gvisDataGeoChartID2628717e249f();
+var options = {};
+options["width"] = 500;
+options["height"] = 400;
+options["dataMode"] = "regions";
+
+    var chart = new google.visualization.GeoChart(
+    document.getElementById('GeoChartID2628717e249f')
+    );
+    chart.draw(data,options);
+    
+
+}
+  
+ 
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "table";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartTableID26284d274c27);
+})();
+function displayChartTableID26284d274c27() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+
+
+// jsDisplayChart
+(function() {
+var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+var chartid = "geochart";
+  
+// Manually see if chartid is in pkgs (not all browsers support Array.indexOf)
+var i, newPackage = true;
+for (i = 0; newPackage && i < pkgs.length; i++) {
+if (pkgs[i] === chartid)
+newPackage = false;
+}
+if (newPackage)
+  pkgs.push(chartid);
+  
+// Add the drawChart function to the global list of callbacks
+callbacks.push(drawChartGeoChartID2628717e249f);
+})();
+function displayChartGeoChartID2628717e249f() {
+  var pkgs = window.__gvisPackages = window.__gvisPackages || [];
+  var callbacks = window.__gvisCallbacks = window.__gvisCallbacks || [];
+  window.clearTimeout(window.__gvisLoad);
+  // The timeout is set to 100 because otherwise the container div we are
+  // targeting might not be part of the document yet
+  window.__gvisLoad = setTimeout(function() {
+  var pkgCount = pkgs.length;
+  google.load("visualization", "1", { packages:pkgs, callback: function() {
+  if (pkgCount != pkgs.length) {
+  // Race condition where another setTimeout call snuck in after us; if
+  // that call added a package, we must not shift its callback
+  return;
+}
+while (callbacks.length > 0)
+callbacks.shift()();
+} });
+}, 100);
+}
+ 
+// jsFooter
+</script>
+<!-- jsChart -->
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartTableID26284d274c27"></script>
+<!-- jsChart -->
+<script type="text/javascript" src="https://www.google.com/jsapi?callback=displayChartGeoChartID2628717e249f"></script>
+<table bgcolor="#CCCCCC" cellspacing="10">
+<tr>
+<td>
+<!-- divChart -->
+<div id="TableID26284d274c27" style="width: 300; height: 400;">
+
+</div>
+</td>
+<td>
+<!-- divChart -->
+<div id="GeoChartID2628717e249f" style="width: 500; height: 400;">
+
+</div>
+</td>
+</tr>
+</table>
+<div>
+<span>Data: various • Chart ID: <a href="Chart_MergedID2628204a2900.html">MergedID2628204a2900</a> • <a href="https://github.com/mages/googleVis">googleVis-0.6.10</a></span><br /> <!-- htmlFooter --> <span> R version 3.6.1 (2019-07-05) • <a href="https://developers.google.com/terms/">Google Terms of Use</a> • Data Policy: See individual charts </span>
+</div>
+</body>
+</html>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
