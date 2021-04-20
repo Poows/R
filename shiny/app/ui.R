@@ -1,7 +1,7 @@
 library('shiny')
 library('RCurl')
 
-DF <- read.csv('./DATA_v2.csv', header = TRUE, sep = ',')
+DF <- read.csv('./product_data2.csv', header = TRUE, sep = ',')
 
 filter.1 <- as.character(unique(DF$Trade.Flow))
 names(filter.1) <- filter.1

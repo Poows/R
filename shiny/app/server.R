@@ -7,7 +7,7 @@ library('lattice')
 library('zoo')
 library('lubridate')
 
-DF <- read.csv('DATA_v2.csv', header = TRUE, sep = ',')
+DF <- read.csv('product_data2.csv', header = TRUE, sep = ',')
 DF <- data.table(DF)
 
 shinyServer(function(input, output){

@@ -9,6 +9,8 @@ library('RCurl')
 
 source("https://raw.githubusercontent.com/aksyuk/R-data/master/API/comtrade_API.R")
 
+getwd()
+
 code = c('0701', '0702', '0703', '0704', '0705')
 DF = data.frame()
 for (i in code){
@@ -22,15 +24,15 @@ for (i in code){
   }
 }
 
-file.name <- paste('./data/DATA.csv', sep = '')
+file.name <- paste('./data/product_data.csv', sep = '')
 write.csv(DF, file.name, row.names = FALSE)
 
 write(paste('Файл',
-            paste('DATA.csv', sep = ''),
+            paste('product_data.csv', sep = ''),
             'загружен', Sys.time()), file = './data/download.log', append=TRUE)
 
 
-DF <- read.csv('./data/DATA.csv', header = T, sep = ',')
+DF <- read.csv('./data/product_data.csv', header = T, sep = ',')
 DF <- DF[, c(2, 4, 8, 10, 22, 30, 32)]
 
 DF <- DF[!is.na(DF$Netweight..kg.) & !is.na(DF$Trade.Value..US..), ]
@@ -47,10 +49,10 @@ names(filter.2) <- filter.2
 filter.2 <- as.list(filter.2)
 filter.2
 
-file.name <- paste('./data/DATA_v2.csv', sep = '')
+file.name <- paste('./data/product_data2.csv', sep = '')
 write.csv(DF, file.name, row.names = FALSE)
 
-DF <- read.csv('./data/DATA_v2.csv', header = T, sep = ',')
+DF <- read.csv('./data/product_data2.csv', header = T, sep = ',')
 DF
 
 df.filter <- DF[DF$Commodity.Code == filter.1[2] & DF$Trade.Flow == filter.2[3], ]
@@ -62,5 +64,5 @@ gp <- gp + geom_point() + geom_smooth(method = 'lm')
 gp
 
 # Запуск приложения
-runApp('./r_app', launch.browser = TRUE,
+runApp('./app', launch.browser = TRUE,
        display.mode = 'showcase')
